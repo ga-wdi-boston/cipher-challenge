@@ -30,11 +30,19 @@ var ROTCipher = (function () {
       }
     };
 
+    var _encodeChar = function(x){
+      return _numToLet(_shiftRight(_letToNum(x)));
+    };
+
+    var _decodeChar = function(x){
+      return _numToLet(_shiftLeft(_letToNum(x)));
+    };
+
     var encode = function(msg){
-      return msg.split("").map(_letToNum).map(_shiftRight).map(_numToLet).join("");
+      return msg.toLowerCase().split("").map(_encodeChar).join("");
     };
     var decode = function(msg){
-      return msg.split("").map(_letToNum).map(_shiftLeft).map(_numToLet).join("");
+      return msg.toLowerCase().split("").map(_decodeChar).join("");
     };
 
     return {
