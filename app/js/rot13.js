@@ -7,9 +7,11 @@ var ROT13Cipher = (function () {
     var _charToCode = function(letter)
     {
       var asciiId = letter.charCodeAt(0) + key;
-      if(asciiId <= 122){
+      if(asciiId === 32 + key){
+        return String.fromCharCode(32);
+      }else if((90+key <= asciiId && asciiId <= 122) || (65 <= asciiId && asciiId <= 90)) {
         return String.fromCharCode(asciiId);
-      }else{
+      }else {
         return String.fromCharCode(asciiId - 26);
       };
     };
@@ -17,7 +19,9 @@ var ROT13Cipher = (function () {
     var _codeToChar = function(letter)
     {
       var asciiId = letter.charCodeAt(0) - key;
-      if(asciiId >= 97){
+      if(asciiId === 32 - key){
+        return String.fromCharCode(32);
+      }else if((97 <= asciiId && asciiId <= 122) || (65 <= asciiId && asciiId <= 90-key)){
         return String.fromCharCode(asciiId);
       }else{
         return String.fromCharCode(asciiId + 26);
@@ -39,7 +43,6 @@ var ROT13Cipher = (function () {
     };
 
     return {
-    key: key,
     encode: encode,
     decode:decode
     };
