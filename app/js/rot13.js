@@ -12,7 +12,7 @@ var ROT13Cipher = (function () {
     };
 
     var decode = function(string, n) {
-      return string.split('').map(function(char) { return plain[Math.abs(plain.indexOf(char) - n + 26) % 26]}).join('');
+      return string.split('').map(function(char) { return plain[(plain.indexOf(char) - n + 26) % 26]}).join('');
     };
 
     return {
