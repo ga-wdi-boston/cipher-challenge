@@ -1,11 +1,8 @@
-'use strict';
-
-var ROT13Cipher = (function () {
-  // the space before the alphabet starts allows it to encode sentences with spaces
-  var abc = ' abcdefghijklmnopqrstuvwxyz';
+var ROT25Cipher = (function () {
+  var abc = 'abcdefghijklmnopqrstuvwxyz';
   var plain = abc.split("");
 
-  var cipherAbc = ' nopqrstuvwxyzabcdefghijklm';
+  var cipherAbc = 'zabcdefghijklmnopqrstuvwxy';
   var cipher = cipherAbc.split("");
 
   var encode = function(word) {
@@ -25,6 +22,5 @@ var ROT13Cipher = (function () {
 
 })();
 
-
-console.log(ROT13Cipher.encode("not cool"));
-console.log(ROT13Cipher.decode("abg pbby"));
+console.log(ROT25Cipher.encode("baggy"));
+console.log(ROT25Cipher.decode("azffx"));
