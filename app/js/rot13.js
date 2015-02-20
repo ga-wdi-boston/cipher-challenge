@@ -33,16 +33,14 @@ var ROT13Cipher = (function () {
 
     var result = function(){
       var new_string = '';
+      plain.unshift(' ');
+      cipher25.unshift(' ');
       for(var i = 0; i < string.length; i++){
         var charToReplace = string.charAt(i);
-        if (charToReplace === ' '){
-            new_string += ' ';
-        } else {
-            var indexInPlain = plain.indexOf(charToReplace);
-            var cipherChar = cipher[indexInPlain];
-            new_string += cipherChar;
-        }
-    }
+        var indexInPlain = plain.indexOf(charToReplace);
+        var cipherChar = cipher[indexInPlain];
+        new_string += cipherChar;
+      }
       return new_string;
     }
 
