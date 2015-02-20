@@ -5,39 +5,31 @@ var ROT13Cipher = (function () {
   var cipher = 'nopqrstuvwxyzabcdefghijklm'.split('');
 
   var encodeIt = function(word){
-    // var word_index = [];
     var word_to_array = word.split('');
 
     return word_to_array.map(function(elem) { //using map returns the array of indexes
-    // return word_to_array.forEach(function(elem) { //what is forEach returning?
-        // console.log(elem); //works
-        // console.log(plain); //works
-        // console.log(plain.indexOf(elem)); //works
-        // return plain.indexOf(elem);
-        // var ind = (plain.indexOf(elem) + 13) % 26; //works
         var ind = plain.indexOf(elem);
-        // return plain[ind]; // => cats
         return cipher[ind];
     });
-    // return word_to_array;
+  }; //encodeIt
 
-  }; //end index_word
+  var decodeIt = function(word){
+    var word_to_array = word.split('');
 
-  // var encodeIt = function (){
-  //   return
-  // };
-
-  // var _encoder = function(word){
-  //   return word = ; //return encoded word
-  // }
-
+    return word_to_array.map(function(elem) { //using map returns the array of indexes
+        var ind = cipher.indexOf(elem);
+        return plain[ind];
+    });
+  }; //decodeIt
 
    return {
      encode: encodeIt,
-    //  decode: decodeIt
+     decode: decodeIt
    };
 
 })();
 
 var ciphIt = ROT13Cipher;
-ciphIt.encode('hello').join('');
+var deciphIt = ROT13Cipher;
+ciphIt.encode('hello').join(''); //=> 'uryyb'
+deciphIt.decode('uryyb').join(''); //=> 'hello'
