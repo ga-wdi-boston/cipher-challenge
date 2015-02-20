@@ -1,8 +1,8 @@
 'use strict';
 
-var ROT13Cipher = (function () {
+var ROT25Cipher = (function () {
   var plain = "abcdefghijklmnopqrstuvwxyz".split('');
-  var cipher = "nopqrstuvwxyzabcdefghijklm".split('');
+  var cipher = "zabcdefghijklmnopqrstuvwxy".split('');
 
   var Encode = function(string){
     var display = function(){
@@ -64,10 +64,5 @@ var ROT13Cipher = (function () {
 })();
 
 //accesses the method and then passes a string to the method
-console.log(ROT13Cipher.Encode("jeff jeff jeff").display());
-console.log(ROT13Cipher.Decode("wrss wrss wrss").display());
-
-
-
-
-
+console.log(ROT25Cipher.Encode("hello").display());
+console.log(ROT25Cipher.Decode("gdkkn").display());
