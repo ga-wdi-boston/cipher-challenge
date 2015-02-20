@@ -10,15 +10,15 @@ var ROT13Cipher = (function() {
             }
         };
 
-        var setCharPos = function() {
-            for (var i = 0; i < encodedString.length; i++) {
-                encodedString[i] = encodedString[i] - 97;
-            }
-        };
+        // var setCharPos = function() {
+        //     for (var i = 0; i < encodedString.length; i++) {
+        //         encodedString[i] = encodedString[i] - 97;
+        //     }
+        // };
 
         var changeCharValues = function() {
             for (var i = 0; i < encodedString.length; i++) {
-                if ((encodedString[i] + 13) > 26) {
+                if ((encodedString[i] + 13) > 122) {
                   encodedString[i] = (encodedString[i] + 13) - 26;
             } else {
                 encodedString[i] = encodedString[i] + 13;
