@@ -8,6 +8,8 @@ describe('ROTANYCipher', function () {
       expect(cipher.encode('Bruins',15)).toEqual('Qgjxch');
       expect(cipher.encode('hello dude',2)).toEqual('jgnnq fwfg');
       expect(cipher.encode('bruins rock',15)).toEqual('qgjxch gdrz');
+      expect(cipher.encode('Bruins', 2000000)).toEqual('Dtwkpu');
+
     });
   });
   describe('.decode', function () {
@@ -16,6 +18,7 @@ describe('ROTANYCipher', function () {
       expect(cipher.decode('Qgjxch', 15)).toEqual('Bruins');
       expect(cipher.decode('jgnnq fwfg', 2)).toEqual('hello dude');
       expect(cipher.decode('qgjxCh gdrz', 15)).toEqual('bruiNs rock');
+      expect(cipher.decode('Dtwkpu', 2000000)).toEqual('Bruins');
     });
   });
 });
