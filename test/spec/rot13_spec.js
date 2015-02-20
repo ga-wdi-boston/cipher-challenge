@@ -7,6 +7,7 @@ describe('ROT13Cipher', function () {
       expect(cipher.encode("hello")).toEqual('uryyb');
       expect(cipher.encode("jeff")).toEqual('wrss');
       expect(cipher.encode("abcdefghijklmnopqrstuvwxyz")).toEqual('nopqrstuvwxyzabcdefghijklm');
+      expect(cipher.encode("AbCdEfGhIjKlMnOpQrStUvWxYz")).toEqual('NoPqRsTuVwXyZaBcDeFgHiJkLm');
       expect(cipher.encode("je ff")).toEqual('wr ss');
       expect(cipher.encode('Hello Jeff')).toEqual('Uryyb Wrss');
     });
@@ -17,7 +18,9 @@ describe('ROT13Cipher', function () {
     expect(cipher.decode("wrss")).toEqual('jeff');
     expect(cipher.decode("wr ss")).toEqual('je ff');
     expect(cipher.decode("nopqrstuvwxyzabcdefghijklm")).toEqual('abcdefghijklmnopqrstuvwxyz');
-    expect(cipher.encode('Uryyb Wrss')).toEqual('Hello Jeff');
+    expect(cipher.decode("NoPqRsTuVwXyZaBcDeFgHiJkLm")).toEqual('AbCdEfGhIjKlMnOpQrStUvWxYz');
+    expect(cipher.decode("Z")).toEqual('M');
+    expect(cipher.decode('Uryyb Wrss')).toEqual('Hello Jeff');
     });
   });
   var cipher8 = ROT13Cipher.Code(8);
