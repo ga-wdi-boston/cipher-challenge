@@ -27,8 +27,7 @@ var ROT13Cipher = (function() {
 
         var encodeString = function() {
             for (var i = 0; i < encodedString.length; i++) {
-                // encodedString[i] = encodedString[i] + 96;
-                encodedString[i] = String.fromCharCode(i);
+                encodedString[i] = String.fromCharCode(encodedString.indexOf(i));
                 // encodedString.join("");
             }
         }
