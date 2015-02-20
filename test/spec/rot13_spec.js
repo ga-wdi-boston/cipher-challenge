@@ -1,10 +1,17 @@
 'use strict';
 
 describe('ROT13Cipher', function () {
+  var cipher = ROT13Cipher;
+
   describe('.encode', function () {
-    // write your test here
+    it('encodes the word "caitlyn"', function () {
+      expect(cipher.encode('caitlyn')).toEqual('pnvgyla');
+    });
   });
+
   describe('.decode', function () {
-    // write your test here
+    it ('decodes the word "pnvgyla"', function () {
+      expect(cipher.decode('pnvgyla')).toEqual('caitlyn');
+    });
   });
 });
