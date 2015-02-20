@@ -1,14 +1,14 @@
-'use strict';
+//  no strict to allow no var
 
-var ROT13Cipher = (function() {
+var ROTANYV2Cipher = (function() {
     var upperAcode = 'A'.charCodeAt(),
     upperZcode = 'Z'.charCodeAt(),
     lowerAcode = 'a'.charCodeAt(),
-    lowerZcode = 'z'.charCodeAt(),
-    cipher = 13;
+    lowerZcode = 'z'.charCodeAt();
 
-    var encode = function(msg) {
-        var uncodedArray = msg.split(''),
+    var encode = function(msg, passedCipher) {
+        cipher = passedCipher % 26;             // no var here on purpose
+        var uncodedArray = msg.split(''),       // as an experiment
         codedArray = [],
         charCode,
         i;
@@ -21,8 +21,9 @@ var ROT13Cipher = (function() {
         return codedArray.join('');
     };
 
-    var decode = function(msg){
-        var codedArray = msg.split(''),
+    var decode = function(msg, passedCipher) {
+        cipher = passedCipher % 26;             // no var here on purpose
+        var codedArray = msg.split(''),         // as an experiment
         uncodedArray = [],
         charCode,
         i;

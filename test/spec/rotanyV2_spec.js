@@ -1,6 +1,6 @@
 'use strict';
-describe('ROTANYCipher', function () {
-  var cipher = ROTANYCipher;
+describe('ROTANYV2Cipher', function () {
+  var cipher = ROTANYV2Cipher;
 
   describe('.encode', function () {
     it('takes a string and returns an encoded string', function(){
