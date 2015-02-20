@@ -1,10 +1,12 @@
-'use strict';
+var plain = 'abcdefghijklmnopqrstuvwxyz'.split('');
+var cipher = 'nopqrstuvwxyzabcdefghijklm'.split('');
+// plain.indexOf('c'); //cat = 2, 0, 19
+// var letter_c = 'c';
+// plain.indexOf(letter_c); //=> 2
 
-var ROT13Cipher = (function () {
-  var plain = 'abcdefghijklmnopqrstuvwxyz'.split('');
-  var cipher = 'nopqrstuvwxyzabcdefghijklm'.split('');
 
-  var encodeIt = function(word){
+
+var index_word = function(word){
     // var word_index = [];
     var word_to_array = word.split('');
 
@@ -21,23 +23,17 @@ var ROT13Cipher = (function () {
     });
     // return word_to_array;
 
-  }; //end index_word
+}; //end index_word
 
-  // var encodeIt = function (){
-  //   return
-  // };
-
-  // var _encoder = function(word){
-  //   return word = ; //return encoded word
-  // }
+// index_word('hello').join(''); //=> 'uryyb'
+console.log(index_word('hello').join('')); //=> 'uryyb'
 
 
-   return {
-     encode: encodeIt,
-    //  decode: decodeIt
-   };
 
-})();
+// var test_word = 'dogs'.split('');
 
-var ciphIt = ROT13Cipher;
-ciphIt.encode('hello').join('');
+// test_word.forEach(function(elem) {
+//         // console.log(elem);
+//         return plain.indexOf(elem);
+// });
+
