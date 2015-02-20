@@ -2,9 +2,13 @@
 
 describe('ROT13Cipher', function () {
   describe('.encode', function () {
-    // write your test here
+    it('encodes the word "hello"', function(){
+      expect(cipher.encode('hello')).toEqual('uryyb');
+    });
   });
   describe('.decode', function () {
-    // write your test here
+    it('decodes the word "hello"', function(){
+      expect(cipher.encode('uryyb')).toEqual('hello');
   });
+});
 });
