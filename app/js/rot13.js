@@ -5,16 +5,10 @@ var ROT13Cipher = (function() {
         var encodedString = [];
 
         var findCharFor = function(string) {
-            for (var i = 0; i < string.length; i++) {
-                encodedString.push(string.charCodeAt(i));
+            for (var i = 0; i < this.string.length; i++) {
+                encodedString.push(this.string.charCodeAt(i));
             }
         };
-
-        // var setCharPos = function() {
-        //     for (var i = 0; i < encodedString.length; i++) {
-        //         encodedString[i] = encodedString[i] - 97;
-        //     }
-        // };
 
         var changeCharValues = function() {
             for (var i = 0; i < encodedString.length; i++) {
@@ -23,22 +17,21 @@ var ROT13Cipher = (function() {
             } else {
                 encodedString[i] = encodedString[i] + 13;
             }
-        }
+          }
+      };
 
         var encodeString = function() {
             for (var i = 0; i < encodedString.length; i++) {
                 encodedString[i] = String.fromCharCode(encodedString[i]);
-                encodedString.join("");
             }
-        }
-
-    return {
+            return encodedString.join("");
+        };
+      return {
         encode: encode
-    }
-}
+    };
+})();
 
 // var decode
 
-})();
-
-ROT13Cipher.encode("abcdefghijklmnopqrstucvwxyz");
+var code = ROT13Cipher.encode("abcdefghijklmnopqrstucvwxyz");
+console.log(code);
