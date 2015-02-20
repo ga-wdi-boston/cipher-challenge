@@ -4,13 +4,13 @@ var ROTANYCipher = (function() {
     var upperAcode = 'A'.charCodeAt(),
     upperZcode = 'Z'.charCodeAt(),
     lowerAcode = 'a'.charCodeAt(),
-    lowerZcode = 'z'.charCodeAt(),
-    charCode,
-    i;
+    lowerZcode = 'z'.charCodeAt();
 
     var encode = function(msg, cipher) {
         var uncodedArray = msg.split(''),
-        codedArray = [];
+        codedArray = [],
+        charCode,
+        i;
 
         for (i = 0; i < msg.length; i++) {
             charCode = uncodedArray[i].charCodeAt();
@@ -22,7 +22,9 @@ var ROTANYCipher = (function() {
 
     var decode = function(msg, cipher){
         var codedArray = msg.split(''),
-        uncodedArray = [];
+        uncodedArray = [],
+        charCode,
+        i;
 
         for (i = 0; i < msg.length; i++) {
             charCode = codedArray[i].charCodeAt();
