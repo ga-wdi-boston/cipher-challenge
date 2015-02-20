@@ -2,9 +2,14 @@
 
 describe('ROT13Cipher', function () {
   describe('.encode', function () {
-    // write your test here
+    it('should encode word to be encoded', function() {
+      expect('not cool').toEqual('abg pbby');
+    });
   });
+
   describe('.decode', function () {
-    // write your test here
+    it('should decode encoded word', function() {
+      expect('abg pbby').toEqual('not cool');
+    });
   });
 });
