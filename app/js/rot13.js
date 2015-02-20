@@ -30,21 +30,17 @@ var ROT13Cipher = (function () {
 
     var encode = function(str){
       var arr = str.split("");
-
-      var out = arr.map(_charToCode);
-      return out.join("");
+      return arr.map(_charToCode).join("");
     };
 
     var decode = function(str){
       var arr = str.split("");
-
-      var out = arr.map(_codeToChar);
-      return out.join("");
+      return arr.map(_codeToChar).join("");
     };
 
     return {
-    encode: encode,
-    decode:decode
+      encode: encode,
+      decode:decode
     };
   };
 
