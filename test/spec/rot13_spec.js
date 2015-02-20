@@ -16,7 +16,7 @@ describe('ROTCipher', function () {
     });
     it("will encode a string with uppercase letters", function() {
       var cipher = ROTCipher.Code(8);
-      expect(cipher.encode('HELLO')).toBe('pmttw');
+      expect(cipher.encode('HELLO')).toBe('PMTTW');
     });
   });
   describe('.decode', function () {
@@ -34,7 +34,7 @@ describe('ROTCipher', function () {
     });
     it("will decode a string with upercase letters", function() {
       var cipher = ROTCipher.Code(8);
-      expect(cipher.decode('PmTtw')).toBe('hello');
+      expect(cipher.decode('PmTtw')).toBe('HeLlo');
     });
   });
 });

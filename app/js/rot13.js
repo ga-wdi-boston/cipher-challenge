@@ -19,30 +19,51 @@ var ROTCipher = (function () {
       }
     };
 
-    var _shiftLeft = function(x){
-      var a = (x - key);
-      if (x === -65) {
-        return -65;
-      } else if (a < 0) {
-        return a + 26;
+    var _shiftRightU = function(x){
+      if (x + key < -6) {
+        return x + key;
       } else {
-        return a % 26;
+        return (x + key) - 26;
+      }
+    };
+
+    var _shiftLeft = function(x){
+      if (x - key < 0) {
+        return x - key + 26;
+      } else {
+        return x - key;
+      }
+    };
+
+    var _shiftLeftU = function(x){
+      if (x - key < -32) {
+        return x - key +  26;
+      } else {
+        return x - key;
       }
     };
 
     var _encodeChar = function(x){
-      return _numToLet(_shiftRight(_letToNum(x)));
+      if (x.toLowerCase() === x){
+        return _numToLet(_shiftRight(_letToNum(x)));
+      } else {
+        return _numToLet(_shiftRightU(_letToNum(x)));
+      }
     };
 
     var _decodeChar = function(x){
-      return _numToLet(_shiftLeft(_letToNum(x)));
+      if (x.toLowerCase() === x) {
+        return _numToLet(_shiftLeft(_letToNum(x)));
+      } else {
+        return _numToLet(_shiftLeftU(_letToNum(x)));
+      }
     };
 
     var encode = function(msg){
-      return msg.toLowerCase().split("").map(_encodeChar).join("");
+      return msg.split("").map(_encodeChar).join("");
     };
     var decode = function(msg){
-      return msg.toLowerCase().split("").map(_decodeChar).join("");
+      return msg.split("").map(_decodeChar).join("");
     };
 
     return {
@@ -54,7 +75,3 @@ var ROTCipher = (function () {
     Code: Code
   };
 })();
-
-var cipher = ROTCipher.Code(13);
-console.log(cipher.encode('hello dolly'));
-console.log(cipher.decode('uryyb'))
