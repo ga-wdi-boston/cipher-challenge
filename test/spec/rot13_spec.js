@@ -2,9 +2,9 @@
 
 describe('ROT13Cipher', function () {
   describe('.encode', function () {
-    // write your test here
+    expect(ROT13Cipher.encode('banana')).toEqual('ananab');
   });
   describe('.decode', function () {
-    // write your test here
+    expect(ROT13Cipher.decode('jhaqreone')).toEqual('wunderbar');
   });
 });
