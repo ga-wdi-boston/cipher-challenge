@@ -12,14 +12,18 @@ var ROT13Cipher = (function () {
   var cipher = cipher.split("");
 
   var encode = function(text) {
+
     return text.toLowerCase().split('').map(function(letter) {
+      
       return cipher[alphabet.indexOf(letter)]}).join('');
-  }
+    }
 
   var decode = function(text) {
+
     return text.split('').map(function(letter) {
+
       return alphabet[cipher.indexOf(letter)]}).join('');
-  }
+    }
 
   return {
     encode: encode,
