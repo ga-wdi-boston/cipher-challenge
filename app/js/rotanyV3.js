@@ -1,9 +1,25 @@
 'use strict';
 
 var ROTANYV3Cipher = (function() {
-    var alpha = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+    var alpha = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'.split(''),
+    cipher, encryptKeys, decryptKeys;
 
-    var _makeKeys = function(cipher) {
+    var initialize = function(initialCipher){
+        cipher = _normalize(initialCipher);
+        encryptKeys = _rotateAlphabet();
+        cipher = _normalize(-cipher);
+        decryptKeys = _rotateAlphabet();
+    };
+
+    var encode = function(msg) {
+        return _translate(msg, encryptKeys);
+    };
+
+    var decode = function(msg) {
+        return _translate(msg, decryptKeys);
+    };
+
+    var _rotateAlphabet = function() {
         var i, keys = {};
 
         for (i = 0; i < 26; i++) {
@@ -15,9 +31,7 @@ var ROTANYV3Cipher = (function() {
         return keys;
     };
 
-    var encode = function(msg, cipher) {
-        cipher = _normalize(cipher);
-        var keys = _makeKeys(cipher);
+    var _translate = function(msg, keys) {
         msg = msg.split('');
         var i, encoded = [];
 
@@ -25,11 +39,7 @@ var ROTANYV3Cipher = (function() {
             encoded[i] = keys[msg[i]] || msg[i];
         }
         return encoded.join('');
-    };
 
-    var decode = function(msg, cipher) {
-        cipher = _normalize(-cipher);
-        return encode(msg, cipher);
     };
 
     var _normalize = function(cipher) {     // reduce any cipher to it's positive
@@ -38,6 +48,7 @@ var ROTANYV3Cipher = (function() {
 
     return {
         encode: encode,
-        decode: decode
+        decode: decode,
+        initialize: initialize
     };
-})();
+}());
