@@ -1,13 +1,12 @@
 'use strict';
 
-var ROT13Cipher = (function() {
+var ROTANYCipher = (function() {
     var upperAcode = 'A'.charCodeAt(),
     upperZcode = 'Z'.charCodeAt(),
     lowerAcode = 'a'.charCodeAt(),
-    lowerZcode = 'z'.charCodeAt(),
-    cipher = 13;
+    lowerZcode = 'z'.charCodeAt();
 
-    var encode = function(msg) {
+    var encode = function(msg, cipher) {
         var uncodedArray = msg.split(''),
         codedArray = [],
         charCode,
@@ -15,13 +14,13 @@ var ROT13Cipher = (function() {
 
         for (i = 0; i < msg.length; i++) {
             charCode = uncodedArray[i].charCodeAt();
-            charCode = _encodeLetter(charCode);
+            charCode = _encodeLetter(charCode, cipher);
             codedArray.push(String.fromCharCode(charCode));
         }
         return codedArray.join('');
     };
 
-    var decode = function(msg){
+    var decode = function(msg, cipher){
         var codedArray = msg.split(''),
         uncodedArray = [],
         charCode,
@@ -29,58 +28,58 @@ var ROT13Cipher = (function() {
 
         for (i = 0; i < msg.length; i++) {
             charCode = codedArray[i].charCodeAt();
-            charCode = _decodeLetter(charCode);
+            charCode = _decodeLetter(charCode, cipher);
             uncodedArray.push(String.fromCharCode(charCode));
         }
         return uncodedArray.join('');
     };
 
-    var _encodeLetter = function(charCode) {
+    var _encodeLetter = function(charCode, cipher) {
         if ( _isUpperLetter(charCode) ) {
-            return _encodeUpperLetter(charCode);
+            return _encodeUpperLetter(charCode, cipher);
         } else if ( _isLowerLetter(charCode) ) {
-            return _encodeLowerLetter(charCode);
+            return _encodeLowerLetter(charCode, cipher);
         } else {
             return charCode;
         }
     };
 
-    var _encodeUpperLetter = function(charCode) {
-        if ( _overflowsUpper(charCode) ) {
+    var _encodeUpperLetter = function(charCode, cipher) {
+        if ( _overflowsUpper(charCode, cipher) ) {
             return charCode + (cipher - 1) - (upperZcode - upperAcode);
         } else {
             return charCode + cipher;
         }
     };
 
-    var _encodeLowerLetter = function(charCode) {
-        if ( _overflowsLower(charCode) ) {
+    var _encodeLowerLetter = function(charCode, cipher) {
+        if ( _overflowsLower(charCode, cipher) ) {
             return charCode + (cipher - 1) - (lowerZcode - lowerAcode);
         } else {
             return charCode + cipher;
         }
     };
 
-    var _decodeLetter = function(charCode) {
+    var _decodeLetter = function(charCode, cipher) {
         if ( _isUpperLetter(charCode) ) {
-            return _decodeUpperLetter(charCode);
+            return _decodeUpperLetter(charCode, cipher);
         } else if ( _isLowerLetter(charCode) ) {
-            return _decodeLowerLetter(charCode);
+            return _decodeLowerLetter(charCode, cipher);
         } else {
             return charCode;
         }
     };
 
-    var _decodeUpperLetter = function(charCode) {
-        if ( _underflowsUpper(charCode) ) {
+    var _decodeUpperLetter = function(charCode, cipher) {
+        if ( _underflowsUpper(charCode, cipher) ) {
             return charCode - (cipher - 1) + (upperZcode - upperAcode);
         } else {
             return charCode - cipher;
         }
     };
 
-    var _decodeLowerLetter = function(charCode) {
-        if ( _underflowsLower(charCode) ) {
+    var _decodeLowerLetter = function(charCode, cipher) {
+        if ( _underflowsLower(charCode, cipher) ) {
             return charCode - (cipher - 1) + (lowerZcode - lowerAcode);
         } else {
             return charCode - cipher;
@@ -91,11 +90,11 @@ var ROT13Cipher = (function() {
         return upperAcode <= charCode && charCode <= upperZcode;
     };
 
-    var _overflowsUpper = function(charCode) {
+    var _overflowsUpper = function(charCode, cipher) {
         return charCode + cipher > upperZcode;
     };
 
-    var _underflowsUpper = function(charCode) {
+    var _underflowsUpper = function(charCode, cipher) {
         return charCode - cipher < upperAcode;
     };
 
@@ -103,11 +102,11 @@ var ROT13Cipher = (function() {
         return lowerAcode <= charCode && charCode <= lowerZcode;
     };
 
-    var _overflowsLower = function(charCode) {
+    var _overflowsLower = function(charCode, cipher) {
         return charCode + cipher > lowerZcode;
     };
 
-    var _underflowsLower = function(charCode) {
+    var _underflowsLower = function(charCode, cipher) {
         return charCode - cipher < lowerAcode;
     };
 
