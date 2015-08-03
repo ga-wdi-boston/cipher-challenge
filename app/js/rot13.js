@@ -1,9 +1,8 @@
 'use strict';
 
-var ROT13Cipher = (function () {
+var CaesarCipher = (function () {
 
   var plain = "abcdefghijklmnopqrstuvwxyz".split("");
-  var cipher = "zabcdefghijklmnopqrstuvwxy".split("");
 
 
 
