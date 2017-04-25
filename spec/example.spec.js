@@ -3,20 +3,20 @@
 // Allow chai syntax like `expect(foo).to.be.ok;`
 // jshint -W030
 
-const chai = require('chai');
-const chaiAsPromised = require('chai-as-promised');
+const chai = require('chai')
+const chaiAsPromised = require('chai-as-promised')
 
-chai.use(chaiAsPromised);
+chai.use(chaiAsPromised)
 
-const expect = chai.expect;
+const expect = chai.expect
 
-const example = require('../lib/example');
+const example = require('../lib/example')
 
 describe('Sync', function () {
   it('is true', function () {
-    expect(example.sync(true)).to.be.true;
-  });
-});
+    expect(example.sync(true)).to.be.true
+  })
+})
 
 describe('Async', function () {
   it('is true', function (done) {
