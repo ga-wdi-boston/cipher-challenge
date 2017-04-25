@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 // Allow chai syntax like `expect(foo).to.be.ok;`
 // jshint -W030
@@ -22,16 +22,16 @@ describe('Async', function () {
   it('is true', function (done) {
     example.async(true, function (error, value) {
       if (error || value !== true) {
-        error = error || new Error(`value is ${value}`);
+        error = error || new Error(`value is ${value}`)
       }
 
-      done(error);
-    });
-  });
-});
+      done(error)
+    })
+  })
+})
 
 describe('Promise', function () {
   it('is true', function () {
-    return expect(example.promise(true)).to.eventually.be.true;
-  });
-});
+    return expect(example.promise(true)).to.eventually.be.true
+  })
+})
